@@ -17,4 +17,4 @@ Rand_Play is a landing page for a random browser game picker. The user presses t
 ## Demo
 
 - GitHub Pages: https://ruselius-dov.github.io/Rand_Play/
-- Netlify: randplay.netlify.app
+- Netlify: https://randplay.netlify.app
