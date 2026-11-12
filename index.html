@@ -13,7 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS (CDN) + конфіг дизайн-системи. Preflight вимкнено, щоб не ламати style.css -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,7 +32,7 @@
                         navy: { DEFAULT: '#162444', light: '#1E325C' }
                     },
                     fontFamily: {
-                        heading: ['"Space Mono"', 'monospace'],
+                        heading: ['"Space Mono"', '"JetBrains Mono"', 'monospace'],
                         body: ['Inter', 'sans-serif']
                     },
                     spacing: { 18: '4.5rem' },
@@ -121,6 +121,9 @@
                            class="w-52 rounded-full border border-line bg-transparent py-2 pl-10 pr-4 text-sm text-white transition focus:border-neon focus:bg-white/5">
                 </div>
 
+                <button type="button" id="lang-toggle" aria-label="Switch language to Ukrainian" title="Switch to Ukrainian"
+                        class="flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-zinc-500 bg-transparent px-2 font-heading text-sm font-bold uppercase text-neon transition hover:border-neon focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-neon">EN</button>
+
                 <button type="button" aria-label="Профіль користувача"
                         class="flex h-12 w-12 items-center justify-center rounded-full bg-surface p-0 transition hover:scale-110 hover:bg-line">
                     <img src="assets/images/profile.svg" alt="" class="h-12 w-12">
@@ -169,6 +172,61 @@
                             </div>
                         </div>
 
+                        <!-- AUTH PANEL: Sign in / Sign up (стиль головного екрана; відкривається кнопкою #btn-auth-open, логіка в js/auth.js) -->
+                        <div id="auth-panel" class="hidden z-20 flex-col items-center overflow-y-auto overscroll-contain p-4 max-h-[calc(100svh_-_var(--header-h)_-_9.5rem)] min-[481px]:max-h-[calc(100svh_-_var(--header-h)_-_11.5rem)] sm:p-6 lg:absolute lg:inset-0 lg:max-h-none" role="region" aria-labelledby="auth-title" data-mode="signin">
+                            <h2 id="auth-title" class="sr-only">Sign in and sign up</h2>
+
+                            <div class="my-auto w-full max-w-sm rounded-2xl border border-white/80 bg-white/50 p-4 text-navy backdrop-blur-sm sm:p-5">
+                                <div role="tablist" aria-label="Authentication mode" class="flex gap-3">
+                                    <button type="button" role="tab" id="tab-signin" aria-selected="true" aria-controls="authForm" class="min-h-11 flex-1 rounded-xl border border-white/80 bg-white/50 px-4 py-2 font-heading text-base text-navy backdrop-blur-sm transition duration-300 hover:bg-white/90 focus-visible:outline-navy aria-selected:border-navy aria-selected:bg-navy aria-selected:text-white aria-selected:hover:bg-navy-light motion-reduce:transition-none">Sign in</button>
+                                    <button type="button" role="tab" id="tab-signup" aria-selected="false" aria-controls="authForm" tabindex="-1" class="min-h-11 flex-1 rounded-xl border border-white/80 bg-white/50 px-4 py-2 font-heading text-base text-navy backdrop-blur-sm transition duration-300 hover:bg-white/90 focus-visible:outline-navy aria-selected:border-navy aria-selected:bg-navy aria-selected:text-white aria-selected:hover:bg-navy-light motion-reduce:transition-none">Sign up</button>
+                                </div>
+
+                                <div id="auth-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+                                <form id="authForm" role="tabpanel" aria-labelledby="tab-signin" novalidate class="mt-5 flex flex-col gap-4">
+                                    <div>
+                                        <label for="auth-email" class="mb-1 block text-sm font-semibold text-navy">Email</label>
+                                        <input type="email" id="auth-email" name="email" autocomplete="email" required aria-invalid="false" aria-describedby="auth-emailError" class="min-h-11 w-full rounded-lg border border-navy/60 bg-white/70 px-4 py-2 text-base text-navy transition duration-300 hover:border-navy focus:border-navy focus-visible:outline-navy motion-reduce:transition-none">
+                                        <p id="auth-emailError" class="hidden mt-1 text-sm font-medium text-red-700"></p>
+                                    </div>
+
+                                    <div>
+                                        <label for="auth-password" class="mb-1 block text-sm font-semibold text-navy">Password</label>
+                                        <input type="password" id="auth-password" name="password" autocomplete="current-password" required aria-invalid="false" aria-describedby="auth-passwordError" class="min-h-11 w-full rounded-lg border border-navy/60 bg-white/70 px-4 py-2 text-base text-navy transition duration-300 hover:border-navy focus:border-navy focus-visible:outline-navy motion-reduce:transition-none">
+                                        <p id="auth-passwordError" class="hidden mt-1 text-sm font-medium text-red-700"></p>
+                                    </div>
+
+                                    <!-- Лише для режиму Sign up -->
+                                    <div id="auth-confirm-group" class="hidden">
+                                        <label for="auth-confirm" class="mb-1 block text-sm font-semibold text-navy">Confirm password</label>
+                                        <input type="password" id="auth-confirm" name="confirmPassword" autocomplete="new-password" aria-invalid="false" aria-describedby="auth-confirmError" class="min-h-11 w-full rounded-lg border border-navy/60 bg-white/70 px-4 py-2 text-base text-navy transition duration-300 hover:border-navy focus:border-navy focus-visible:outline-navy motion-reduce:transition-none">
+                                        <p id="auth-confirmError" class="hidden mt-1 text-sm font-medium text-red-700"></p>
+                                    </div>
+
+                                    <button type="submit" id="auth-submit"
+                                            class="flex min-h-11 w-full items-center justify-center rounded-xl bg-navy px-8 py-3 text-lg text-white transition duration-300 hover:-translate-y-0.5 hover:bg-navy-light active:translate-y-0 focus-visible:outline-navy motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                        Enter
+                                    </button>
+
+                                    <!-- Лише для режиму Sign in -->
+                                    <p id="auth-forgot-wrap" class="text-center">
+                                        <button type="button" id="auth-forgot"
+                                                class="min-h-11 bg-transparent px-2 text-sm font-medium text-navy underline underline-offset-4 transition duration-300 hover:text-navy-light focus-visible:outline-navy motion-reduce:transition-none">
+                                            Forgot your password?
+                                        </button>
+                                    </p>
+
+                                    <p id="auth-status" class="hidden rounded-lg border border-navy/30 bg-white/70 p-3 text-sm text-navy" role="status"></p>
+                                </form>
+
+                                <button type="button" id="auth-back"
+                                        class="mt-2 inline-flex min-h-11 items-center gap-2 bg-transparent text-sm font-medium text-navy transition duration-300 hover:underline focus-visible:outline-navy motion-reduce:transition-none">
+                                    &larr; return to the main screen
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /AUTH PANEL -->
+
                         <div class="screen-content">
                             <span class="hashtag">
                                 <img src="assets/images/sparkles.svg" alt="" class="sparkle-icon"> RANDOMIZE YOUR BREAK
@@ -182,7 +240,7 @@
                                     Spin the Roulette
                                     <img src="assets/images/play.svg" alt="" class="ml-3 h-4 w-4">
                                 </button>
-                                <button type="button"
+                                <button type="button" id="btn-auth-open" aria-controls="auth-panel" aria-expanded="false"
                                         class="flex min-h-11 w-full items-center justify-center gap-3 rounded-xl border border-white/80 bg-white/50 px-8 py-4 text-lg font-medium text-navy backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/90 sm:w-auto">
                                     <img src="assets/images/user1page.svg" alt="" class="btn-icon h-5 w-5">
                                     Sign in | Sign up
@@ -374,7 +432,7 @@
         <!-- WIDGET -->
         <section id="widget" aria-labelledby="widget-title" class="relative z-10 scroll-mt-18 bg-deep py-16 md:py-20">
              <!-- WIDGET: Discord server widget -->
-                    <div class="mx-auto max-w-2xl px-4 text-center md:max-w-3xl lg:max-w-5xl sm:px-6">
+                    <div class="mx-auto max-w-2xl px-4 text-center md:max-w-2xl lg:max-w-4xl sm:px-6">
                         <h2 id="widget-title" class="mb-6 text-3xl font-bold tracking-tight text-white">Приєднуйся до Discord</h2>
                         <iframe
                                 src="https://discord.com/widget?id=1568014676711964722&amp;theme=dark"
@@ -439,8 +497,63 @@
             </div>
         </section>
 
+        <!-- FEEDBACK FORM (ЛР №9): Tailwind, mobile-first; логіка в js/validation.js -->
+        <section id="feedback" aria-labelledby="feedback-title" class="relative z-10 scroll-mt-18 py-16 md:py-20">
+            <div class="mx-auto w-full max-w-content px-4 sm:px-8">
+                <h2 id="feedback-title" class="break-words text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl mb-10 md:mb-14">Зворотний <span class="text-neon">зв’язок</span></h2>
+
+                <div id="feedbackStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+                <p class="mx-auto mb-6 w-full max-w-3xl text-sm text-muted">Усі поля, крім телефону, обов’язкові.</p>
+
+                <form id="feedbackForm" novalidate class="mx-auto grid w-full max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
+                    <div>
+                        <label for="username" class="mb-2 block text-sm font-medium text-white">Ім’я</label>
+                        <input type="text" id="username" name="username" autocomplete="name" required aria-invalid="false" class="min-h-11 w-full rounded-lg border border-zinc-500 bg-deep px-4 py-3 text-base text-white transition duration-300 hover:border-muted focus:border-neon motion-reduce:transition-none">
+                        <p id="usernameError" class="hidden mt-2 text-sm font-medium text-rose-400"></p>
+                    </div>
+
+                    <div>
+                        <label for="email" class="mb-2 block text-sm font-medium text-white">Email</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required aria-invalid="false" class="min-h-11 w-full rounded-lg border border-zinc-500 bg-deep px-4 py-3 text-base text-white transition duration-300 hover:border-muted focus:border-neon motion-reduce:transition-none">
+                        <p id="emailError" class="hidden mt-2 text-sm font-medium text-rose-400"></p>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="phone" class="mb-2 block text-sm font-medium text-white">Телефон (необов’язково)</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" aria-invalid="false" aria-describedby="phoneHint" class="min-h-11 w-full rounded-lg border border-zinc-500 bg-deep px-4 py-3 text-base text-white transition duration-300 hover:border-muted focus:border-neon motion-reduce:transition-none">
+                        <p id="phoneHint" class="mt-2 text-sm text-muted">Формат: +380XXXXXXXXX, без пробілів і дужок</p>
+                        <p id="phoneError" class="hidden mt-2 text-sm font-medium text-rose-400"></p>
+                        <button type="button" id="phoneFix" class="hidden mt-2 min-h-11 items-center rounded-lg border border-solid border-neon bg-transparent px-4 py-2 text-left font-body text-sm font-medium text-neon transition duration-300 hover:bg-neon hover:text-deep motion-reduce:transition-none"></button>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="message" class="mb-2 block text-sm font-medium text-white">Повідомлення</label>
+                        <textarea id="message" name="message" rows="5" required aria-invalid="false" aria-describedby="messageCounter" class="min-h-11 w-full rounded-lg border border-zinc-500 bg-deep px-4 py-3 text-base text-white transition duration-300 hover:border-muted focus:border-neon motion-reduce:transition-none resize-y focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-neon"></textarea>
+                        <p id="messageCounter" class="mt-2 text-right text-sm text-muted">0 / 1000 символів</p>
+                        <p id="messageError" class="hidden mt-2 text-sm font-medium text-rose-400"></p>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="agreement" name="agreement" required aria-invalid="false" class="h-5 w-5 shrink-0 cursor-pointer accent-neon">
+                            <label for="agreement" class="flex min-h-11 cursor-pointer items-center text-base text-zinc-300">Я погоджуюсь на обробку моїх даних</label>
+                        </div>
+                        <p id="agreementError" class="hidden mt-2 text-sm font-medium text-rose-400"></p>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <button type="submit" id="feedbackSubmit"
+                                class="flex min-h-11 w-full items-center justify-center rounded-xl bg-neon px-8 py-4 text-lg text-deep transition duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-glow active:translate-y-0 active:brightness-95 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:w-auto">
+                            Надіслати
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
         <!-- CONTACTS / MAP -->
-        <section id="contact" aria-labelledby="contact-title" class="relative z-10 scroll-mt-18 py-16 md:py-20">
+        <section id="contact" aria-labelledby="contact-title" class="relative z-10 scroll-mt-18 bg-deep py-16 md:py-20">
             <div class="mx-auto w-full max-w-content px-4 sm:px-8">
                 <h2 id="contact-title" class="break-words text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl mb-10 md:mb-14">Контакти</h2>
 
@@ -494,11 +607,23 @@
         </div>
     </footer>
 
+    <!-- Модальне вікно успіху форми зворотного зв'язку (імітація, дані нікуди не надсилаються) -->
+    <div id="successModal" class="hidden fixed inset-0 z-[100] items-center justify-center bg-deep/80 px-4 py-6 backdrop-blur-sm">
+        <div id="successDialog" role="dialog" aria-modal="true" aria-labelledby="successModalTitle" aria-describedby="successModalText" tabindex="-1" class="max-h-full w-full max-w-md overflow-y-auto rounded-xl border border-neon bg-surface p-6 shadow-glow sm:p-8">
+            <h2 id="successModalTitle" class="font-heading text-2xl font-bold text-white">Валідація пройдена</h2>
+            <p id="successModalText" class="mt-4 text-base text-zinc-300">Форма успішно пройшла клієнтську валідацію. Демонстрація, дані нікуди не надсилаються.</p>
+            <button type="button" id="successModalClose" class="mt-6 flex min-h-11 w-full items-center justify-center rounded-xl bg-neon px-8 py-3 font-heading text-lg text-deep transition duration-300 hover:brightness-110 active:brightness-95 motion-reduce:transition-none sm:w-auto">Закрити</button>
+        </div>
+    </div>
+
     <!-- Рулетка на моніторі -->
     <script src="js/roulette.js" defer></script>
     <!-- Камера: hero <-> стіл -->
     <script src="js/stage.js" defer></script>
     <!-- Мобільне меню (гамбургер) -->
     <script src="js/menu.js" defer></script>
+    <script src="js/i18n.js" defer></script>
+    <script src="js/validation.js" defer></script>
+    <script src="js/auth.js" defer></script>
 </body>
 </html>
