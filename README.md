@@ -6,8 +6,9 @@ Rand_Play is a landing page for a random browser game picker. The user presses t
 
 - HTML5
 - Tailwind CSS (CDN)
-- JavaScript: js/menu.js, js/roulette.js, js/stage.js
+- JavaScript: js/menu.js, js/roulette.js, js/stage.js, auth.js, i18n.js, validation.js, reset.js
 - Embedded services: YouTube, Google Maps, Discord Widget
+- Validation: RegEx
 
 ## Running locally
 
