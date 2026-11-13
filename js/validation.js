@@ -321,7 +321,7 @@
 
     function onInput(field) {
         if (field.key === 'message') updateCounter();
-        renderField(field, field.touched);
+        renderField(field, false);
     }
 
     function onBlur(field) {
