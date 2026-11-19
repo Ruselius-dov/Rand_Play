@@ -91,6 +91,9 @@
     }
     </script>
 
+    <!-- Lab 10 media libraries: version-pinned -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css">
     <!-- Styles (кастомний CSS: сцена, CRT, стіл, рулетка) -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -385,6 +388,32 @@
             </div>
         </section>
 
+        <!-- LAB 10: Swiper.js + Fancybox game previews -->
+        <section id="game-showcase" aria-labelledby="showcase-title" class="rp-showcase relative z-10 scroll-mt-18">
+            <div class="rp-showcase-inner">
+                <header class="rp-showcase-heading">
+                    <p class="rp-showcase-eyebrow">RAND_PLAY / RETRO ARCADE</p>
+                    <h2 id="showcase-title">Discover your next game</h2>
+                    <p class="rp-showcase-description">Explore retro-inspired games, preview their worlds, and let the roulette decide.</p>
+                </header>
+                <div class="swiper rp-game-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><article class="rp-game-card"><a class="rp-game-preview" href="assets/images/game-showcase/retro-puzzle.svg" data-fancybox="rp-game-gallery" data-caption="Retro Puzzle — PUZZLE" aria-label="Open Retro Puzzle preview"><img src="assets/images/game-showcase/retro-puzzle.svg" width="1200" height="750" loading="lazy" alt="Puzzle-game preview with connected neon maze tiles"></a><div class="rp-game-details"><span class="rp-game-category">PUZZLE</span><h3>Retro Puzzle</h3><p>Connect glowing paths and solve mysterious puzzles.</p></div></article></div>
+                        <div class="swiper-slide"><article class="rp-game-card"><a class="rp-game-preview" href="assets/images/game-showcase/neon-platformer.svg" data-fancybox="rp-game-gallery" data-caption="Neon Platformer — PLATFORMER" aria-label="Open Neon Platformer preview"><img src="assets/images/game-showcase/neon-platformer.svg" width="1200" height="750" loading="lazy" alt="Platform-game preview with character, gems and traps"></a><div class="rp-game-details"><span class="rp-game-category">PLATFORMER</span><h3>Neon Platformer</h3><p>Jump across platforms, collect gems, and avoid traps.</p></div></article></div>
+                        <div class="swiper-slide"><article class="rp-game-card"><a class="rp-game-preview" href="assets/images/game-showcase/pixel-invaders.svg" data-fancybox="rp-game-gallery" data-caption="Pixel Invaders — ARCADE" aria-label="Open Pixel Invaders preview"><img src="assets/images/game-showcase/pixel-invaders.svg" width="1200" height="750" loading="lazy" alt="Arcade-game preview with player ship and enemy fleet"></a><div class="rp-game-details"><span class="rp-game-category">ARCADE</span><h3>Pixel Invaders</h3><p>Defend the galaxy from waves of enemy spaceships.</p></div></article></div>
+                        <div class="swiper-slide"><article class="rp-game-card"><a class="rp-game-preview" href="assets/images/game-showcase/neon-racer.svg" data-fancybox="rp-game-gallery" data-caption="Neon Racer — RACING" aria-label="Open Neon Racer preview"><img src="assets/images/game-showcase/neon-racer.svg" width="1200" height="750" loading="lazy" alt="Racing-game preview with neon car and night highway"></a><div class="rp-game-details"><span class="rp-game-category">RACING</span><h3>Neon Racer</h3><p>Race through futuristic highways and neon cities.</p></div></article></div>
+                        <div class="swiper-slide"><article class="rp-game-card"><a class="rp-game-preview" href="assets/images/game-showcase/pixel-colony.svg" data-fancybox="rp-game-gallery" data-caption="Pixel Colony — STRATEGY" aria-label="Open Pixel Colony preview"><img src="assets/images/game-showcase/pixel-colony.svg" width="1200" height="750" loading="lazy" alt="Strategy-game preview with futuristic colony buildings"></a><div class="rp-game-details"><span class="rp-game-category">STRATEGY</span><h3>Pixel Colony</h3><p>Build your colony, manage resources, and expand.</p></div></article></div>
+                    </div>
+                    <div class="rp-game-controls" role="group" aria-label="Game slider controls">
+                        <button class="swiper-button-prev" type="button" aria-label="Previous game"></button>
+                        <div class="swiper-pagination"></div>
+                        <button class="swiper-button-next" type="button" aria-label="Next game"></button>
+                    </div>
+                </div>
+                <p class="rp-showcase-note">Demo gallery — original fictional retro game concepts.</p>
+            </div>
+        </section>
+
         <!-- VIDEO -->
         <section id="video" aria-labelledby="video-title" class="relative z-10 scroll-mt-18 bg-deep py-16 md:py-20">
             <div class="mx-auto w-full max-w-content px-4 sm:px-8">
@@ -616,6 +645,10 @@
         </div>
     </div>
 
+    <!-- Lab 10: load dependencies before custom showcase code -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" defer></script>
+    <script src="js/showcase.js" defer></script>
     <!-- Рулетка на моніторі -->
     <script src="js/roulette.js" defer></script>
     <!-- Камера: hero <-> стіл -->

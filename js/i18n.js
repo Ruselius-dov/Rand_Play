@@ -59,6 +59,34 @@
         ['Просто натисни Spin','Just press Spin'], ['Крутити рулетку зараз','Spin the roulette now'],
         ['Обрати улюблений жанр','Choose a favorite genre'],
         ['Миттєвий старт у Guest-mode • 100% безкоштовно • Жодних завантажень','Instant guest access • 100% free • No downloads'],
+        // Lab 10 game showcase: labels, text, and ARIA attributes
+        ['RAND_PLAY / RETRO ARCADE','RAND_PLAY / РЕТРОАРКАДА'],
+        ['Discover your next game','Відкрий свою наступну гру'],
+        ['Explore retro-inspired games, preview their worlds, and let the roulette decide.','Переглядай ретроігри, знайомся з їхніми світами та довір вибір рулетці.'],
+        ['PUZZLE','ГОЛОВОЛОМКА'],
+        ['PLATFORMER','ПЛАТФОРМЕР'],
+        ['ARCADE','АРКАДА'],
+        ['RACING','ПЕРЕГОНИ'],
+        ['STRATEGY','СТРАТЕГІЯ'],
+        ['Connect glowing paths and solve mysterious puzzles.','З’єднуй сяйливі шляхи й розв’язуй загадкові головоломки.'],
+        ['Jump across platforms, collect gems, and avoid traps.','Стрибай платформами, збирай кристали й уникай пасток.'],
+        ['Defend the galaxy from waves of enemy spaceships.','Захищай галактику від хвиль ворожих космічних кораблів.'],
+        ['Race through futuristic highways and neon cities.','Мчи футуристичними трасами й неоновими містами.'],
+        ['Build your colony, manage resources, and expand.','Будуй колонію, керуй ресурсами й розширюй територію.'],
+        ['Demo gallery — original fictional retro game concepts.','Демонстраційна галерея — оригінальні вигадані концепції ретроігор.'],
+        ['Game slider controls','Керування слайдером ігор'],
+        ['Previous game','Попередня гра'],
+        ['Next game','Наступна гра'],
+        ['Open Retro Puzzle preview','Відкрити зображення гри «Retro Puzzle»'],
+        ['Puzzle-game preview with connected neon maze tiles','Ілюстрація гри «Retro Puzzle»'],
+        ['Open Neon Platformer preview','Відкрити зображення гри «Neon Platformer»'],
+        ['Platform-game preview with character, gems and traps','Ілюстрація гри «Neon Platformer»'],
+        ['Open Pixel Invaders preview','Відкрити зображення гри «Pixel Invaders»'],
+        ['Arcade-game preview with player ship and enemy fleet','Ілюстрація гри «Pixel Invaders»'],
+        ['Open Neon Racer preview','Відкрити зображення гри «Neon Racer»'],
+        ['Racing-game preview with neon car and night highway','Ілюстрація гри «Neon Racer»'],
+        ['Open Pixel Colony preview','Відкрити зображення гри «Pixel Colony»'],
+        ['Strategy-game preview with futuristic colony buildings','Ілюстрація гри «Pixel Colony»'],
         // Feedback form and modal
         ['Зворотний','Contact'], ['зв’язок','form'],
         ['Усі поля, крім телефону, обов’язкові.','All fields except phone are required.'],
@@ -246,6 +274,7 @@
             // do not overwrite live validation output.
             if (
                 !item.node.isConnected ||
+                item.node.parentElement.closest('#game-showcase .rp-game-details h3') ||
                 item.node.parentElement.closest(
                     '[id$="Error"], #feedbackStatus, #auth-status, ' +
                     '#reset-status, #messageCounter, #phoneFix'
