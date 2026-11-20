@@ -1026,3 +1026,308 @@ input, textarea, select {
 @media(max-width:767px) { .rp-showcase { padding:48px 0 56px; } .rp-showcase-inner { padding:0 16px; } .rp-showcase-heading { margin-bottom:28px; } .rp-showcase-description { font-size:15px; } .rp-game-card { padding:12px; } }
 @media(max-width:375px) { .rp-game-swiper .rp-game-controls { column-gap:8px; padding-inline:0; } .rp-game-swiper .rp-game-controls .swiper-pagination { gap:6px; } }
 @media(prefers-reduced-motion:reduce) { .rp-game-card,.rp-game-preview img { transition:none; } .rp-game-card:hover,.rp-game-preview:hover img { transform:none; } }
+
+/* Game Match Advisor — section scaffold (the logic will be added separately) */
+.rp-advisor {
+  background: #161616;
+  color: #fff;
+  padding: 72px 0 80px;
+}
+.rp-advisor-inner {
+  max-width: 1264px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  min-width: 0;
+}
+.rp-advisor-heading { text-align: center; margin-bottom: 36px; }
+.rp-advisor-eyebrow { color: #2dd4bf; font-size: 13px; font-weight: 700; letter-spacing: 2px; }
+.rp-advisor-heading h2 {
+  margin: 14px 0;
+  font-size: clamp(28px, 4.5vw, 46px);
+  line-height: 1.2;
+  font-weight: 700;
+}
+.rp-advisor-heading > p:last-child { color: #a3a3a3; margin: 0 auto; max-width: 650px; line-height: 1.6; }
+.rp-advisor-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 22px; align-items: stretch; }
+.rp-advisor-panel, .rp-advisor-result {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid #2a2a2d;
+  border-radius: 18px;
+  background: #0d0d0d;
+}
+.rp-advisor-panel-heading { margin: 0 0 22px; font-size: 19px; font-weight: 700; }
+.rp-advisor-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 18px; }
+.rp-advisor-field { min-width: 0; }
+.rp-advisor-field > label { display: block; color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.rp-advisor-field select, .rp-advisor-field input[type="text"] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 11px 12px;
+  border: 1px solid #52525b;
+  border-radius: 10px;
+  background: #161616;
+  color: #fff;
+  font: inherit;
+}
+.rp-advisor-field select:focus-visible, .rp-advisor-field input:focus-visible,
+.rp-advisor-submit:focus-visible, .rp-advisor-check-label input:focus-visible {
+  outline: 3px solid #2dd4bf;
+  outline-offset: 3px;
+}
+.rp-advisor-field input[aria-invalid="true"] { border-color: #e11d48; }
+.rp-advisor-hint { margin: 8px 0 0; color: #a3a3a3; font-size: 12px; line-height: 1.5; }
+.rp-advisor-error { min-height: 0; margin: 5px 0 0; color: #fda4af; font-size: 12px; }
+.rp-advisor-error:empty { display: none; }
+.rp-advisor-field-checkbox { display: flex; align-items: center; }
+.rp-advisor-check-label { display: flex; align-items: center; gap: 11px; cursor: pointer; line-height: 1.4; }
+.rp-advisor-check-label input { width: 20px; height: 20px; margin: 0; accent-color: #2dd4bf; flex: 0 0 auto; }
+.rp-advisor-submit {
+  margin-top: 28px;
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 10px;
+  background: #2dd4bf;
+  color: #0d0d0d;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.rp-advisor-submit:disabled { opacity: .55; cursor: not-allowed; }
+.rp-advisor-build-note { text-align: center; }
+.rp-advisor-result { border-color: #2dd4bf; display: flex; flex-direction: column; justify-content: center; }
+.rp-advisor-result-tag { color: #2dd4bf; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; }
+.rp-advisor-result h3 { margin: 16px 0; font-size: clamp(20px, 2.6vw, 28px); line-height: 1.3; }
+.rp-advisor-result > p:not(.rp-advisor-result-tag) { color: #a3a3a3; line-height: 1.6; }
+.rp-advisor-result-content { min-width: 0; }
+@media (max-width: 850px) {
+  .rp-advisor-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .rp-advisor { padding: 48px 0 56px; }
+  .rp-advisor-inner { padding-inline: 16px; }
+  .rp-advisor-panel, .rp-advisor-result { padding: 20px 16px; }
+  .rp-advisor-fields { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* Accessible navigation, section shortcuts and Back to Top */
+html { scroll-padding-top: calc(var(--header-h, 80px) + 12px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.rp-desktop-nav { gap: 1rem; min-width: 0; }
+.rp-desktop-nav .rp-nav-primary { white-space: nowrap; }
+.rp-desktop-nav .rp-nav-link, .rp-nav-dropdown-trigger { color: #a3a3a3; font-size: .95rem; text-decoration: none; transition: color .15s ease; }
+.rp-nav-link:hover, .rp-nav-dropdown-trigger:hover,
+.rp-nav-link[aria-current="location"] { color: #2dd4bf !important; }
+.rp-nav-link[aria-current="location"] { font-weight: 700; }
+.rp-nav-dropdown { position: relative; }
+.rp-nav-dropdown-trigger { cursor: pointer; display: flex; align-items: center; gap: .4rem; padding: 10px; border-radius: 8px; list-style: none; white-space: nowrap; }
+.rp-nav-dropdown-trigger::-webkit-details-marker { display:none; }
+.rp-nav-dropdown-list { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); z-index:70; background:#161616; border:1px solid #2dd4bf; border-radius:12px; box-shadow:0 12px 35px #0008; width:min(320px, 80vw); max-height:min(65vh, 480px); overflow-y:auto; padding:8px; display:grid; grid-template-columns:1fr; }
+.rp-nav-dropdown-list .rp-nav-link { display:block; padding:10px 12px; border-radius:7px; }
+.rp-nav-dropdown-list .rp-nav-link:hover { background:#2a2a2d; }
+.rp-mobile-menu { max-height:calc(100dvh - var(--header-h, 80px)); overflow-y:auto; overscroll-behavior:contain; }
+.rp-mobile-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; padding:12px 14px; }
+.rp-mobile-links .rp-nav-link { display:block; padding:10px 8px; border-radius:8px; color:#a3a3a3; font-size:.95rem; }
+.rp-mobile-links .rp-nav-link:hover { background:#2a2a2d; }
+.rp-back-to-top { position:fixed; z-index:45; right:clamp(14px,3vw,32px); bottom:clamp(14px,3vw,32px); width:48px; height:48px; display:grid; place-items:center; background:#161616; border:1px solid #2dd4bf; border-radius:50%; color:#2dd4bf; font-size:26px; text-decoration:none; box-shadow:0 4px 18px #0007; }
+.rp-back-to-top[hidden] { display:none !important; }
+.rp-back-to-top:hover { background:#2a2a2d; }
+.rp-nav-link:focus-visible, .rp-nav-dropdown-trigger:focus-visible, .rp-back-to-top:focus-visible { outline:3px solid #2dd4bf; outline-offset:3px; }
+@media (max-width: 440px) { .rp-mobile-links { grid-template-columns:minmax(0,1fr); } }
+
+
+/* ========================================
+   Lab 11 UI polish — consistent interactive states
+   ======================================== */
+:root { --rp-action-glow: 0 0 18px rgba(45, 212, 191, .32); }
+/* Same visual language as the contact form Submit button. */
+.rp-cta-action,
+.rp-back-to-top,
+.rp-advisor-submit {
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease,
+              background-color .3s ease, border-color .3s ease, color .3s ease;
+}
+/* Override the global a:hover ruby accent specifically for CTA links. */
+.rp-cta-action.bg-neon,
+.rp-cta-action.bg-neon:visited,
+.rp-cta-action.bg-neon:hover,
+.rp-cta-action.bg-neon:focus-visible { color: #0d0d0d !important; }
+.rp-cta-action.border-neon,
+.rp-cta-action.border-neon:visited { color: #2dd4bf !important; }
+.rp-cta-action.border-neon:hover,
+.rp-cta-action.border-neon:focus-visible { color: #5eead4 !important; background: #16332f; }
+.rp-cta-action:hover,
+.rp-back-to-top:hover,
+.rp-advisor-submit:not(:disabled):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: var(--rp-action-glow);
+}
+.rp-cta-action:active,
+.rp-back-to-top:active,
+.rp-advisor-submit:not(:disabled):active {
+  transform: translateY(0);
+  filter: brightness(.95);
+  box-shadow: none;
+}
+.rp-back-to-top { color: #2dd4bf !important; }
+.rp-back-to-top:hover, .rp-back-to-top:focus-visible {
+  color: #5eead4 !important; border-color: #5eead4;
+  background: #1b2c29;
+}
+.rp-cta-action:focus-visible,
+.rp-back-to-top:focus-visible,
+.rp-advisor-submit:focus-visible {
+  outline: 3px solid #99f6e4;
+  outline-offset: 3px;
+}
+.rp-advisor-submit:disabled:hover { transform:none; filter:none; box-shadow:none; }
+/* More readable primary and secondary section links. */
+.rp-desktop-nav .rp-nav-link,
+.rp-nav-dropdown-trigger,
+.rp-mobile-links .rp-nav-link,
+.rp-nav-dropdown-list .rp-nav-link { color: #e4e4e7; font-weight: 500; }
+.rp-desktop-nav .rp-nav-link:hover,
+.rp-nav-dropdown-trigger:hover,
+.rp-mobile-links .rp-nav-link:hover,
+.rp-nav-dropdown-list .rp-nav-link:hover,
+.rp-nav-link[aria-current="location"] { color: #2dd4bf !important; }
+.rp-nav-link[aria-current="location"] { background: rgba(45, 212, 191, .09); }
+/* The menu starts BELOW the header line; no white scrollbars. */
+.rp-nav-dropdown-list {
+  top: calc(100% + 26px);
+  scrollbar-color: #2dd4bf #161616;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+.rp-nav-dropdown-list::-webkit-scrollbar,
+.rp-mobile-menu::-webkit-scrollbar { width: 7px; }
+.rp-nav-dropdown-list::-webkit-scrollbar-track,
+.rp-mobile-menu::-webkit-scrollbar-track { background: #161616; }
+.rp-nav-dropdown-list::-webkit-scrollbar-thumb,
+.rp-mobile-menu::-webkit-scrollbar-thumb {
+  background: #2b8e83; border-radius: 10px;
+}
+.rp-nav-dropdown-list::-webkit-scrollbar-thumb:hover,
+.rp-mobile-menu::-webkit-scrollbar-thumb:hover { background: #2dd4bf; }
+.rp-mobile-menu { scrollbar-color: #2b8e83 #161616; scrollbar-width: thin; }
+/* Native select remains present for form value & no-JS fallback, custom UI
+   is activated only by JS. */
+.rp-advisor-select-enhanced select.rp-advisor-native-select {
+  position: absolute !important;
+  width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important;
+  opacity: 0; overflow: hidden; clip-path: inset(50%);
+  pointer-events: none;
+}
+.rp-advisor-combobox { position: relative; width: 100%; min-width: 0; }
+.rp-advisor-combo-trigger {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; width:100%; min-height: 46px; padding: 11px 14px;
+  border: 1px solid #52525b; border-radius: 10px;
+  background: #161616; color: #fff; font: inherit;
+  font-weight: 500; text-align: left; cursor: pointer;
+}
+.rp-advisor-combo-trigger:hover { border-color: #2dd4bf; }
+.rp-advisor-combo-trigger[aria-expanded="true"] { border-color:#2dd4bf; box-shadow:0 0 0 2px #2dd4bf33; }
+.rp-advisor-combo-trigger:focus-visible,
+.rp-advisor-option:focus-visible { outline: 3px solid #2dd4bf; outline-offset: 2px; }
+.rp-advisor-combo-chevron { flex:0 0 auto; width: 10px; height: 10px;
+  border-right: 2px solid #2dd4bf; border-bottom: 2px solid #2dd4bf;
+  transform: translateY(-2px) rotate(45deg); transition: transform .2s ease; }
+.rp-advisor-combo-trigger[aria-expanded="true"] .rp-advisor-combo-chevron {
+  transform: translateY(2px) rotate(225deg);
+}
+.rp-advisor-options {
+  position: absolute; z-index: 80; top: calc(100% + 6px); left:0; right:0;
+  padding:6px; margin:0; list-style:none; background: #161616;
+  border:1px solid #2dd4bf; border-radius:10px;
+  box-shadow: 0 14px 35px #0009;
+  max-height: 225px; overflow-y: auto;
+  scrollbar-color: #2b8e83 #161616; scrollbar-width: thin;
+}
+.rp-advisor-options[hidden] { display:none; }
+.rp-advisor-option { display:flex; align-items:center; justify-content:space-between;
+  width:100%; min-height:40px; border:0; border-radius:7px;
+  padding: 9px 12px; background:transparent; color:#e4e4e7;
+  text-align:left; cursor:pointer; font:inherit; }
+.rp-advisor-option:hover,
+.rp-advisor-option:focus { background: #24423c; color:#fff; }
+.rp-advisor-option[aria-selected="true"] { background:#163b35; color:#5eead4; font-weight:600; }
+.rp-advisor-option[aria-selected="true"]::after { content:'✓'; color:#2dd4bf; margin-left:8px; }
+/* Custom checkbox visual, native input stays focusable & usable. */
+.rp-advisor-check-label input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none;
+  flex: 0 0 22px; width:22px; height:22px; margin:0;
+  background:#161616; border: 1px solid #71717a; border-radius:5px;
+  cursor:pointer; display:grid; place-items:center;
+  transition: background-color .2s, border-color .2s, box-shadow .2s;
+}
+.rp-advisor-check-label input[type="checkbox"]:checked { background:#2dd4bf; border-color:#2dd4bf; }
+.rp-advisor-check-label input[type="checkbox"]:checked::after {
+  content:''; width:11px; height:7px; border-left:2.5px solid #0d0d0d;
+  border-bottom:2.5px solid #0d0d0d; transform:rotate(-45deg) translateY(-1px);
+}
+.rp-advisor-check-label input[type="checkbox"]:hover { border-color:#2dd4bf; box-shadow:0 0 10px #2dd4bf30; }
+.rp-advisor-check-label input[type="checkbox"]:focus-visible { outline: 3px solid #99f6e4; outline-offset: 3px; }
+/* Precise anchored navigation without the heading being hidden under header. */
+html { scroll-padding-top: calc(var(--header-h, 72px) + 22px); }
+section[id] { scroll-margin-top: calc(var(--header-h, 72px) + 22px); }
+@media (prefers-reduced-motion: reduce) {
+ .rp-cta-action,.rp-back-to-top,.rp-advisor-submit,.rp-advisor-combo-chevron { transition:none; }
+ .rp-cta-action:hover,.rp-back-to-top:hover,.rp-advisor-submit:not(:disabled):hover { transform:none; }
+}
+
+/* Shared Submit-style hover for ordinary actions throughout Rand_Play.
+   Avoid changing roulette animation controls and third-party widgets. */
+#auth-submit, #successModalClose, #feedbackSubmit, #lang-toggle,
+#menu-btn, .rp-nav-dropdown-trigger {
+  transition: transform .3s ease, filter .3s ease, box-shadow .3s ease,
+              background-color .3s ease, border-color .3s ease, color .3s ease;
+}
+#auth-submit:hover, #successModalClose:hover, #feedbackSubmit:hover,
+#lang-toggle:hover, #menu-btn:hover, .rp-nav-dropdown-trigger:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: var(--rp-action-glow);
+}
+#auth-submit:active, #successModalClose:active, #feedbackSubmit:active,
+#lang-toggle:active, #menu-btn:active, .rp-nav-dropdown-trigger:active {
+  transform: translateY(0);
+  filter: brightness(.95);
+  box-shadow: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #auth-submit, #successModalClose, #feedbackSubmit, #lang-toggle,
+  #menu-btn, .rp-nav-dropdown-trigger { transition:none; }
+  #auth-submit:hover, #successModalClose:hover, #feedbackSubmit:hover,
+  #lang-toggle:hover, #menu-btn:hover, .rp-nav-dropdown-trigger:hover {transform:none;}
+}
+
+/* Game Advisor release: restore section alternation after the new panel.
+   Preceding sections retain their original backgrounds. */
+#game-advisor { background-color: #161616; }
+#video, #widget, #cta, #contact { background-color: #0D0D0D; }
+#about, #faq, #feedback { background-color: #161616; }
+
+/* One source of scroll offsets: JS for clicks, CSS only for native anchors. */
+html { scroll-padding-top: 0; }
+section[id], #game-advisor { scroll-margin-top: 0; }
+
+.rp-advisor-result-score { color:#2dd4bf; font:700 clamp(28px,3vw,42px)/1.15 'Space Mono', monospace; margin:12px 0; }
+.rp-advisor-score-label { color:#a3a3a3; font-size:13px; margin:0 0 16px; }
+.rp-advisor-game-image { width:100%; max-height:220px; object-fit:cover; border-radius:12px; border:1px solid #2a2a2d; margin-top:14px; }
+.rp-advisor-score-detail { display:grid; grid-template-columns:minmax(95px,1fr) 2fr auto; gap:10px; align-items:center; font-size:13px; margin:10px 0; }
+.rp-advisor-score-detail progress { width:100%; height:9px; accent-color:#2dd4bf; }
+.rp-advisor-score-detail strong { color:#d4d4d4; font-variant-numeric:tabular-nums; }
+.rp-advisor-result-explanation { color:#d4d4d4; margin:14px 0 0; font-size:14px; line-height:1.55; }
+.rp-advisor-result-content[hidden] { display:none; }
+@media(max-width:440px){.rp-advisor-score-detail{grid-template-columns:90px minmax(0,1fr) 40px;gap:6px;font-size:11px;}}
+
+/* Keep advisor controls stationary during focus-driven scrolling. Anchor links still animate. */
+html:has(#advisor-form :focus) { scroll-behavior: auto; }

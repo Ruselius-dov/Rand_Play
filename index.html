@@ -110,11 +110,27 @@
                 </a>
             </div>
 
-            <nav class="hidden flex-1 items-center justify-center gap-8 lg:flex" aria-label="Головна навігація">
-            <a href="#home" class="text-lg text-muted transition-colors hover:text-neon">Home</a>
-            <a href="#features" class="text-lg text-muted transition-colors hover:text-neon">Features</a>
-            <a href="#games" class="text-lg text-muted transition-colors hover:text-neon">Games</a>
-            <a href="#contacts" class="text-lg text-muted transition-colors hover:text-neon">Contacts</a>
+            <nav class="rp-desktop-nav hidden flex-1 items-center justify-center lg:flex" aria-label="Головна навігація">
+                <a class="rp-nav-link rp-nav-primary" href="#home">Home</a>
+                <a class="rp-nav-link rp-nav-primary" href="#game-advisor">Game advisor</a>
+                <details class="rp-nav-dropdown" id="desktop-sections">
+                    <summary class="rp-nav-dropdown-trigger">Explore sections <span aria-hidden="true">▾</span></summary>
+                    <div class="rp-nav-dropdown-list" aria-label="All page sections">
+                 <a class="rp-nav-link" href="#home">Home</a>
+                 <a class="rp-nav-link" href="#desk-view">Roulette</a>
+                 <a class="rp-nav-link" href="#features">Features</a>
+                 <a class="rp-nav-link" href="#how-it-works">How it works</a>
+                 <a class="rp-nav-link" href="#game-showcase">Game showcase</a>
+                 <a class="rp-nav-link" href="#game-advisor">Game advisor</a>
+                 <a class="rp-nav-link" href="#video">Video</a>
+                 <a class="rp-nav-link" href="#about">About us</a>
+                 <a class="rp-nav-link" href="#widget">Discord</a>
+                 <a class="rp-nav-link" href="#faq">FAQ</a>
+                 <a class="rp-nav-link" href="#cta">Get started</a>
+                 <a class="rp-nav-link" href="#feedback">Feedback</a>
+                 <a class="rp-nav-link" href="#contact">Contact</a>
+                    </div>
+                </details>
             </nav>
 
             <div class="flex flex-1 items-center justify-end gap-3 lg:gap-4">
@@ -142,12 +158,21 @@
         </div>
 
         <!-- Мобільне меню: випадає поверх сторінки, висоту header не змінює -->
-        <div id="mobile-menu" class="absolute left-0 top-full hidden w-full border-b-2 border-neon bg-deep/95 backdrop-blur-md lg:hidden">
-            <nav class="flex flex-col px-4 py-2" aria-label="Мобільна навігація">
-            <a href="#home" class="rounded-lg px-2 py-3 text-lg text-muted transition-colors hover:text-neon">Home</a>
-            <a href="#features" class="rounded-lg px-2 py-3 text-lg text-muted transition-colors hover:text-neon">Features</a>
-            <a href="#games" class="rounded-lg px-2 py-3 text-lg text-muted transition-colors hover:text-neon">Games</a>
-            <a href="#contacts" class="rounded-lg px-2 py-3 text-lg text-muted transition-colors hover:text-neon">Contacts</a>
+        <div id="mobile-menu" class="rp-mobile-menu absolute left-0 top-full hidden w-full border-b-2 border-neon bg-deep/95 backdrop-blur-md lg:hidden">
+            <nav class="rp-mobile-links" aria-label="Мобільна навігація">
+                <a class="rp-nav-link" href="#home">Home</a>
+                <a class="rp-nav-link" href="#desk-view">Roulette</a>
+                <a class="rp-nav-link" href="#features">Features</a>
+                <a class="rp-nav-link" href="#how-it-works">How it works</a>
+                <a class="rp-nav-link" href="#game-showcase">Game showcase</a>
+                <a class="rp-nav-link" href="#game-advisor">Game advisor</a>
+                <a class="rp-nav-link" href="#video">Video</a>
+                <a class="rp-nav-link" href="#about">About us</a>
+                <a class="rp-nav-link" href="#widget">Discord</a>
+                <a class="rp-nav-link" href="#faq">FAQ</a>
+                <a class="rp-nav-link" href="#cta">Get started</a>
+                <a class="rp-nav-link" href="#feedback">Feedback</a>
+                <a class="rp-nav-link" href="#contact">Contact</a>
             </nav>
             <div class="relative border-t border-line p-4">
                 <img src="assets/images/Search.svg" alt="" aria-hidden="true" class="pointer-events-none absolute left-7 top-1/2 h-5 w-5 -translate-y-1/2">
@@ -171,7 +196,7 @@
 
                         <div class="screen-top-bar">
                             <div class="live-badge">
-                                <img src="assets/images/Live%20indicator.svg" alt="" class="dot-icon"> LIVE SYSTEM
+                                <img src="assets/images/Live%20indicator.svg" alt="" class="dot-icon"> <span data-no-i18n>LIVE SYSTEM</span>
                             </div>
                         </div>
 
@@ -414,6 +439,68 @@
             </div>
         </section>
 
+        <!-- Game Match Advisor: preference-based recommendations -->
+        <section id="game-advisor" class="rp-advisor relative z-10 scroll-mt-18" aria-labelledby="advisor-title">
+            <div class="rp-advisor-inner">
+                <header class="rp-advisor-heading">
+                    <p class="rp-advisor-eyebrow">RAND_PLAY / SMART DISCOVERY</p>
+                    <h2 id="advisor-title">Find your perfect game</h2>
+                    <p>Tell us what you enjoy, and we will find your next game.</p>
+                </header>
+
+                <div class="rp-advisor-layout">
+                    <form id="advisor-form" class="rp-advisor-panel" novalidate aria-describedby="advisor-intro">
+                        <p id="advisor-intro" class="rp-advisor-panel-heading">Your preferences</p>
+                        <div class="rp-advisor-fields">
+                            <div class="rp-advisor-field">
+                                <label for="advisor-genre">Preferred genre</label>
+                                <select id="advisor-genre" name="genre" required>
+                                    <option value="Puzzle">Puzzle</option>
+                                    <option value="Platformer">Platformer</option>
+                                    <option value="Arcade" selected>Arcade</option>
+                                    <option value="Racing">Racing</option>
+                                    <option value="Strategy">Strategy</option>
+                                </select>
+                            </div>
+                            <div class="rp-advisor-field">
+                                <label for="advisor-time">Available time (minutes)</label>
+                                <input id="advisor-time" type="text" name="minutes" inputmode="numeric"
+                                       autocomplete="off" value="25" maxlength="20" required
+                                       aria-describedby="advisor-time-hint advisor-time-error" aria-invalid="false">
+                                <p id="advisor-time-hint" class="rp-advisor-hint">Enter a whole number from 5 to 240.</p>
+                                <p id="advisor-time-error" class="rp-advisor-error" aria-live="polite"></p>
+                            </div>
+                            <div class="rp-advisor-field">
+                                <label for="advisor-difficulty">Preferred difficulty</label>
+                                <select id="advisor-difficulty" name="difficulty" required>
+                                    <option value="Easy">Easy</option>
+                                    <option value="Medium" selected>Medium</option>
+                                    <option value="Hard">Hard</option>
+                                </select>
+                            </div>
+                            <div class="rp-advisor-field rp-advisor-field-checkbox">
+                                <label class="rp-advisor-check-label" for="advisor-multiplayer">
+                                    <input id="advisor-multiplayer" name="multiplayer" type="checkbox">
+                                    <span>Prefer multiplayer games</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button id="advisor-submit" class="rp-advisor-submit" type="submit">
+                            Find my game
+                        </button>
+
+                    </form>
+
+                    <div class="rp-advisor-result" aria-labelledby="advisor-result-title">
+                        <p class="rp-advisor-result-tag">YOUR RECOMMENDATION</p>
+                        <h3 id="advisor-result-title">Your game match will appear here</h3>
+                        <p id="advisor-result-description">Choose your preferences to see a personalized suggestion.</p>
+                        <div id="advisor-result-content" class="rp-advisor-result-content" role="status" aria-live="polite" aria-atomic="true"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- VIDEO -->
         <section id="video" aria-labelledby="video-title" class="relative z-10 scroll-mt-18 bg-deep py-16 md:py-20">
             <div class="mx-auto w-full max-w-content px-4 sm:px-8">
@@ -507,21 +594,14 @@
         <!-- CTA -->
         <section id="cta" aria-labelledby="cta-title" class="relative z-10 scroll-mt-18 bg-deep py-16 md:py-20">
             <div class="mx-auto w-full max-w-content px-4 sm:px-8">
-                <div class="mx-auto max-w-3xl rounded-lg border border-neon bg-surface px-4 py-10 text-center shadow-glow sm:px-8 md:py-14">
-                    <h2 id="cta-title" class="break-words text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">У що пограти, коли нудно? <span class="text-neon">Просто натисни Spin</span></h2>
-
+                <div class="mx-auto max-w-3xl rounded-lg border border-neon bg-surface px-4 py-9 text-center shadow-glow sm:px-8 md:py-12">
+                    <p class="mb-3 text-xs font-bold uppercase tracking-[.2em] text-neon">READY TO PLAY?</p>
+                    <h2 id="cta-title" class="break-words text-3xl font-bold leading-tight text-white sm:text-4xl">Can't decide what to play?</h2>
+                    <p class="mx-auto mt-4 max-w-xl leading-relaxed text-zinc-300">Let chance pick your next game, or find one that matches your mood.</p>
                     <div class="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:gap-4">
-                        <a href="#stage"
-                           class="flex min-h-11 items-center justify-center rounded-xl bg-neon px-8 py-4 text-center font-heading text-lg font-bold text-deep transition duration-300 hover:-translate-y-0.5 hover:text-deep hover:brightness-110 hover:shadow-glow active:translate-y-0 active:brightness-95 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                            Крутити рулетку зараз
-                        </a>
-                        <a href="#stage"
-                           class="flex min-h-11 items-center justify-center rounded-xl border border-neon bg-transparent px-8 py-4 text-center font-heading text-lg font-bold text-neon transition duration-300 hover:-translate-y-0.5 hover:bg-neon/10 hover:text-neon hover:shadow-glow active:translate-y-0 active:bg-neon/20 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                            Обрати улюблений жанр
-                        </a>
+                        <a href="#desk-view" class="rp-cta-action flex min-h-11 items-center justify-center rounded-xl bg-neon px-7 py-4 text-center font-heading text-lg font-bold text-deep transition hover:brightness-110 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none">Spin the roulette</a>
+                        <a href="#game-advisor" class="rp-cta-action flex min-h-11 items-center justify-center rounded-xl border border-neon px-7 py-4 text-center font-heading text-lg font-bold text-neon transition hover:bg-neon/10 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none">Find my game</a>
                     </div>
-
-                    <p class="mt-6 text-sm leading-relaxed text-zinc-300 sm:text-base">Миттєвий старт у Guest-mode • 100% безкоштовно • Жодних завантажень</p>
                 </div>
             </div>
         </section>
@@ -603,6 +683,10 @@
     </main>
 
     <!-- FOOTER -->
+    <a id="back-to-top" href="#home" class="rp-back-to-top" aria-label="Back to top" title="Back to top" hidden>
+        <span aria-hidden="true">↑</span>
+    </a>
+
     <footer id="contacts" class="mt-auto border-t border-neon bg-deep">
         <div class="grid grid-cols-1 items-center gap-8 px-6 py-7 text-center md:grid-cols-2 md:text-left lg:grid-cols-3">
 
@@ -615,7 +699,7 @@
                 <ul class="space-y-4">
                     <li><a href="#" class="link-underline text-sm text-zinc-200 hover:text-neon">Privacy Policy</a></li>
                     <li><a href="#contacts" class="link-underline text-sm text-zinc-200 hover:text-neon">Contacts</a></li>
-                    <li><a href="#" class="link-underline text-sm text-zinc-200 hover:text-neon">FAQ</a></li>
+                    <li><a href="#faq" class="link-underline text-sm text-zinc-200 hover:text-neon">FAQ</a></li>
                 </ul>
             </nav>
 
@@ -655,6 +739,8 @@
     <script src="js/stage.js" defer></script>
     <!-- Мобільне меню (гамбургер) -->
     <script src="js/menu.js" defer></script>
+    <script src="js/ui-polish.js" defer></script>
+    <script src="js/game-advisor.js" defer></script>
     <script src="js/i18n.js" defer></script>
     <script src="js/validation.js" defer></script>
     <script src="js/auth.js" defer></script>

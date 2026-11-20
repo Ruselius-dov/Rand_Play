@@ -6,7 +6,18 @@
     var pairs = [
         // Common navigation, hero and authentication
         ['Home','Головна'], ['Features','Переваги'], ['Games','Ігри'], ['Contacts','Контакти'],
-        ['LIVE SYSTEM','СИСТЕМА АКТИВНА'], ['Sign in and sign up','Вхід і реєстрація'],
+        ['Roulette','Рулетка'], ['How it works','Як це працює'], ['Game showcase','Галерея ігор'],
+        ['Game advisor','Підбір гри'], ['Video','Відео'], ['About us','Про нас'],
+        ['Discord','Discord'], ['FAQ','Часті питання'], ['Get started','Почати'],
+        ['Feedback','Зворотний зв’язок'], ['Contact','Контакт'],
+        ['Explore sections','Розділи сайту'], ['All page sections','Усі розділи сторінки'],
+        ['READY TO PLAY?','ГОТОВИЙ ГРАТИ?'],
+        ["Can't decide what to play?",'Не можеш вирішити, у що пограти?'],
+        ['Let chance pick your next game, or find one that matches your mood.','Довір вибір наступної гри випадку або знайди гру під свій настрій.'],
+        ['Spin the roulette','Крутити рулетку'], ['Find my game','Підібрати гру'],
+        ['Back to top','Повернутися нагору'],
+
+        ['Sign in and sign up','Вхід і реєстрація'],
         ['Sign in','Увійти'], ['Sign up','Зареєструватися'], ['Email','Електронна пошта'],
         ['Password','Пароль'], ['Confirm password','Підтвердіть пароль'], ['Enter','Продовжити'],
         ['Forgot your password?','Забули пароль?'], ['← return to the main screen','← повернутися на головний екран'],
@@ -87,6 +98,22 @@
         ['Racing-game preview with neon car and night highway','Ілюстрація гри «Neon Racer»'],
         ['Open Pixel Colony preview','Відкрити зображення гри «Pixel Colony»'],
         ['Strategy-game preview with futuristic colony buildings','Ілюстрація гри «Pixel Colony»'],
+        // Game Match Advisor interface (game titles remain untranslated)
+        ['RAND_PLAY / SMART DISCOVERY','RAND_PLAY / РОЗУМНИЙ ПІДБІР'],
+        ['Find your perfect game','Знайди ідеальну гру'],
+        ['Tell us what you enjoy, and we will find your next game.','Розкажи про свої вподобання, і ми підберемо наступну гру.'],
+        ['Your preferences','Твої вподобання'],
+        ['Preferred genre','Улюблений жанр'],
+        ['Available time (minutes)','Доступний час (хвилини)'],
+        ['Enter a whole number from 5 to 240.','Введи ціле число від 5 до 240.'],
+        ['Preferred difficulty','Бажана складність'],
+        ['Prefer multiplayer games','Віддаю перевагу багатокористувацьким іграм'],
+        ['Find my game','Підібрати гру'],
+        ['The recommendation feature will be enabled in the next step.','Функцію рекомендацій буде ввімкнено на наступному етапі.'],
+        ['YOUR RECOMMENDATION','ТВОЯ РЕКОМЕНДАЦІЯ'],
+        ['Your game match will appear here','Тут з’явиться підібрана гра'],
+        ['Choose your preferences to see a personalized suggestion.','Обери параметри, щоб отримати персональну рекомендацію.'],
+        ['Easy','Легка'], ['Medium','Середня'], ['Hard','Складна'],
         // Feedback form and modal
         ['Зворотний','Contact'], ['зв’язок','form'],
         ['Усі поля, крім телефону, обов’язкові.','All fields except phone are required.'],
@@ -288,6 +315,7 @@
 
             // Keep the roulette button labeled SPIN in both languages.
             if (
+                item.node.parentElement.closest('[data-no-i18n]') ||
                 item.node.parentElement.closest('#spin-btn') ||
                 trimmed.toUpperCase() === 'SPIN'
             ) {
