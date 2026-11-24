@@ -51,7 +51,7 @@
     --transition-base: 300ms ease-in-out;
     --transition-slow: 500ms ease-in-out;
     --blur-md: blur(10px);
-    --crt-turn-on-delay: 1.5s;
+    --crt-turn-on-delay: 0.15s;
     --header-h: 72px;
 }
 
@@ -447,7 +447,7 @@ input, textarea, select {
         left: -15px;
         right: -15px;
         bottom: -15px;
-        background-image: linear-gradient(rgba(13,13,13,0.4), rgba(13,13,13,0.7)), url('../assets/images/background.jpg');
+        background-image: linear-gradient(rgba(13,13,13,0.4), rgba(13,13,13,0.7)), url('../assets/images/background.webp');
         background-size: cover;
         background-position: center;
         filter: blur(8px);
@@ -1331,3 +1331,14 @@ section[id], #game-advisor { scroll-margin-top: 0; }
 
 /* Keep advisor controls stationary during focus-driven scrolling. Anchor links still animate. */
 html:has(#advisor-form :focus) { scroll-behavior: auto; }
+
+/* Lighthouse: preserve the 8px dots with larger touch areas. */
+.rp-game-swiper .rp-game-controls { grid-template-columns:48px minmax(0,1fr) 48px; column-gap:4px; }
+.rp-game-swiper .rp-game-controls .swiper-button-prev,
+.rp-game-swiper .rp-game-controls .swiper-button-next { width:48px; height:48px; min-width:48px; min-height:48px; }
+.rp-game-swiper .rp-game-controls .swiper-pagination { gap:0; }
+.rp-game-swiper .rp-game-controls .swiper-pagination-bullet { flex:0 0 48px; width:48px; height:48px; border-radius:0; background:radial-gradient(circle,#a3a3a3 4px,transparent 4px); }
+.rp-game-swiper .rp-game-controls .swiper-pagination-bullet-active { background:radial-gradient(circle,#2dd4bf 4px,transparent 4px); }
+#lang-toggle, #menu-btn { min-width:48px; min-height:48px; }
+/* The inactive scene stays measurable but must not paint before camera initialization. */
+.stage[data-state="hero"] .desk-cinematic { visibility:hidden; }

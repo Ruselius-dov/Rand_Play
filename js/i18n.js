@@ -294,7 +294,7 @@
     }
 
     function apply() {
-        document.documentElement.lang = language;
+        document.documentElement.lang = language === 'ua' ? 'uk' : 'en';
 
         textNodes.forEach(function (item) {
             // Nodes owned by other scripts can be edited after startup;
@@ -347,8 +347,8 @@
             button.setAttribute(
                 'aria-label',
                 language === 'en'
-                    ? 'Switch language to Ukrainian'
-                    : 'Змінити мову на англійську'
+                    ? 'EN — Switch language to Ukrainian'
+                    : 'UA — Змінити мову на англійську'
             );
 
             button.setAttribute(

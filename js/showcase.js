@@ -46,6 +46,19 @@
       console.error('Rand_Play showcase: Fancybox library is unavailable.');
     }
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  const loadScript = src => new Promise((resolve, reject) => {
+    const script = document.createElement('script'); script.src = src; script.onload = resolve; script.onerror = reject; document.head.append(script);
+  });
+  let started = false;
+  async function start() {
+    if (started) return; started = true;
+    try { await Promise.all([loadScript('assets/vendor/swiper.min.js'), loadScript('assets/vendor/fancybox.min.js')]); init(); }
+    catch (error) { started = false; console.error('Showcase could not load', error); }
+  }
+  const target = document.querySelector('.rp-game-swiper');
+  if (target && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); start(); } }, {rootMargin:'400px'});
+    observer.observe(target);
+    target.addEventListener('focusin', start, {once:true});
+  } else start();
 })();

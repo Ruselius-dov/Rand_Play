@@ -1,0 +1,5 @@
+{
+  "framework": null,
+  "buildCommand": "pnpm run check && pnpm run build",
+  "outputDirectory": "."
+}

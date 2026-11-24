@@ -1,0 +1,14 @@
+{
+  "name": "rand-play",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss -i css/tailwind.input.css -o css/tailwind.css --minify",
+    "check": "node scripts/check.cjs",
+    "test": "node scripts/regression.cjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17",
+    "playwright": "1.65.1"
+  }
+}

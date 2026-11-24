@@ -10,38 +10,11 @@
     <meta property="og:description" content="Не знаєш, у що пограти? Крути рулетку випадкових веб-ігор! Миттєвий старт у браузері без скачування, хмарні сейви та жодних повторів. Тисни Spin зараз!">
     <meta property="og:type" content="website">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Self-hosted fonts retain font-display: swap and all language subsets. -->
+    <link rel="stylesheet" href="css/fonts.css">
 
-    <!-- Tailwind CSS (CDN) + конфіг дизайн-системи. Preflight вимкнено, щоб не ламати style.css -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            corePlugins: { preflight: false, container: false },
-            theme: {
-                extend: {
-                    colors: {
-                        deep: '#0D0D0D',
-                        surface: '#161616',
-                        neon: '#2DD4BF',
-                        ruby: '#E11D48',
-                        muted: '#A3A3A3',
-                        line: '#2A2A2D',
-                        navy: { DEFAULT: '#162444', light: '#1E325C' }
-                    },
-                    fontFamily: {
-                        heading: ['"Space Mono"', '"JetBrains Mono"', 'monospace'],
-                        body: ['Inter', 'sans-serif']
-                    },
-                    spacing: { 18: '4.5rem' },
-                    maxWidth: { content: '1264px' },
-                    boxShadow: { glow: '0 0 30px rgba(45,212,191,0.2)' }
-                }
-            }
-        };
-    </script>
+    <!-- Precompiled Tailwind utilities; no browser runtime compiler. -->
+    <link rel="stylesheet" href="css/tailwind.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -92,10 +65,13 @@
     </script>
 
     <!-- Lab 10 media libraries: version-pinned -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css">
+    <link rel="stylesheet" href="assets/vendor/swiper.min.css">
+    <link rel="stylesheet" href="assets/vendor/fancybox.css">
     <!-- Styles (кастомний CSS: сцена, CRT, стіл, рулетка) -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/images/icon.svg">
+    <link rel="canonical" href="https://randplay-kappa.vercel.app/">
+    <meta property="og:url" content="https://randplay-kappa.vercel.app/">
 </head>
 <body id="home">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:flex focus:min-h-11 focus:items-center focus:rounded-lg focus:bg-deep focus:px-4 focus:text-neon focus:outline-none focus:ring-2 focus:ring-neon">Перейти до контенту</a>
@@ -730,8 +706,6 @@
     </div>
 
     <!-- Lab 10: load dependencies before custom showcase code -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" defer></script>
     <script src="js/showcase.js" defer></script>
     <!-- Рулетка на моніторі -->
     <script src="js/roulette.js" defer></script>
