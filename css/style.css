@@ -1342,3 +1342,6 @@ html:has(#advisor-form :focus) { scroll-behavior: auto; }
 #lang-toggle, #menu-btn { min-width:48px; min-height:48px; }
 /* The inactive scene stays measurable but must not paint before camera initialization. */
 .stage[data-state="hero"] .desk-cinematic { visibility:hidden; }
+
+/* Skip offscreen section layout until it approaches the viewport. */
+main > section { content-visibility:auto; contain-intrinsic-size:auto 700px; }
