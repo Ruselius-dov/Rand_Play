@@ -145,6 +145,12 @@
 
     /* ---------- Цикл анімації ---------- */
     function frame(now) {
+        // Do not measure or repaint the roulette while its scene is inactive.
+        if (document.hidden || document.getElementById('stage')?.dataset.state === 'hero') {
+            last = now;
+            requestAnimationFrame(frame);
+            return;
+        }
         const dt = Math.min((now - last) / 1000, 0.05);
         last = now;
 
@@ -169,3 +175,4 @@
     render();
     requestAnimationFrame(frame);
 })();
+
