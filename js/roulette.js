@@ -3,6 +3,7 @@
    Пасивне крутіння → SPIN: розгін → швидкість → плавне гальмування
    ======================================== */
 (() => {
+ function initRoulette() {
     'use strict';
 
     // Шлях відносно index.html (НЕ абсолютний F:\...)
@@ -174,5 +175,13 @@
     spinBtn.addEventListener('click', startSpin);
     render();
     requestAnimationFrame(frame);
+ }
+ const stage = document.getElementById('stage');
+ if (!stage || stage.dataset.state !== 'hero') initRoulette();
+ else {
+   const observer = new MutationObserver(() => {
+     if (stage.dataset.state !== 'hero') { observer.disconnect(); initRoulette(); }
+   });
+   observer.observe(stage, {attributes:true, attributeFilter:['data-state']});
+ }
 })();
-

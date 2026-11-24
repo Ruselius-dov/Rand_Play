@@ -322,10 +322,8 @@
                 return;
             }
 
-            item.node.nodeValue = original.replace(
-                trimmed,
-                t(trimmed)
-            );
+            var translated = original.replace(trimmed, t(trimmed));
+            if (item.node.nodeValue !== translated) item.node.nodeValue = translated;
         });
 
         attrs.forEach(function (item) {
