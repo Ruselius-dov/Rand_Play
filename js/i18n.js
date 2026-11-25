@@ -191,19 +191,11 @@
         }
     });
 
-    function patternTranslate(value, dict) {
-        if (dict[value] !== undefined) return dict[value];
-
-        // Match the most specific template first: generic 'Use {n}' must not
-        // capture 'Use 8–64 characters with at least one letter and one digit.'
-        var keys = Object.keys(dict).sort(function (a, b) {
+    function compileTemplates(dict) {
+        var keys = Object.keys(dict).filter(k => k.includes('{n}')).sort(function (a, b) {
             return b.replace(/\{n\d*\}/g, '').length - a.replace(/\{n\d*\}/g, '').length;
         });
-
-        for (var i = 0; i < keys.length; i++) {
-            var k = keys[i];
-            if (k.indexOf('{n}') < 0) continue;
-
+        return keys.map(function (k) {
             var regex = new RegExp(
                 '^' +
                 k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -213,7 +205,16 @@
                 '$'
             );
 
-            var match = value.match(regex);
+            return {key:k, regex:regex};
+        });
+    }
+
+    const templates = new Map([[enToUa, compileTemplates(enToUa)], [uaToEn, compileTemplates(uaToEn)]]);
+    function patternTranslate(value, dict) {
+        if (dict[value] !== undefined) return dict[value];
+        for (const template of templates.get(dict)) {
+            var k = template.key;
+            var match = value.match(template.regex);
             if (match) {
                 var output = dict[k];
                 for (var j = match.length - 1; j >= 1; j--) {
