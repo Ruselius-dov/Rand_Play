@@ -1,4 +1,4 @@
-/* Rand_Play Lab 10 — isolated Swiper + Fancybox component */
+/* Rand_Play — isolated Swiper + Fancybox component */
 (function () {
   'use strict';
   function init() {
@@ -49,10 +49,18 @@
   const loadScript = src => new Promise((resolve, reject) => {
     const script = document.createElement('script'); script.src = src; script.onload = resolve; script.onerror = reject; document.head.append(script);
   });
+  const loadStyle = href => new Promise((resolve, reject) => {
+    const sheet = document.createElement('link');
+    sheet.rel = 'stylesheet';
+    sheet.href = href;
+    sheet.onload = resolve;
+    sheet.onerror = reject;
+    document.head.insertBefore(sheet, document.querySelector('link[href="css/main.css"]'));
+  });
   let started = false;
   async function start() {
     if (started) return; started = true;
-    try { await Promise.all([loadScript('assets/vendor/swiper.min.js'), loadScript('assets/vendor/fancybox.min.js')]); init(); }
+    try { await Promise.all([loadStyle('assets/vendor/swiper.min.css'), loadStyle('assets/vendor/fancybox.css'), loadScript('assets/vendor/swiper.min.js'), loadScript('assets/vendor/fancybox.min.js')]); init(); }
     catch (error) { started = false; console.error('Showcase could not load', error); }
   }
   const target = document.querySelector('.rp-game-swiper');

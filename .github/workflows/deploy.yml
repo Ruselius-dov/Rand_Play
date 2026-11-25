@@ -1,7 +1,7 @@
 name: CI/CD Production Verification
 on:
   push:
-    branches: [main, performance-audit-lr12]
+    branches: [main, production-quality]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -55,3 +55,27 @@ jobs:
         with:
           name: regression-production
           path: test-results/
+      - name: Audit the live mobile page
+        run: |
+          mkdir -p performance-results
+          for attempt in 1 2 3; do
+            pnpm --package=lighthouse@13.6.0 dlx lighthouse https://randplay-kappa.vercel.app --only-categories=performance,accessibility,best-practices,seo --output=html --output=json --output-path=performance-results/mobile-$attempt --chrome-flags="--headless --no-first-run" --quiet
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-production
+          path: performance-results/
+      - name: Check median mobile scores
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const dir = 'performance-results';
+          const runs = fs.readdirSync(dir).filter(name => name.endsWith('.json')).map(name => JSON.parse(fs.readFileSync(dir + '/' + name)));
+          if (runs.length !== 3 || runs.some(r => r.runtimeError || r.finalDisplayedUrl !== 'https://randplay-kappa.vercel.app/')) throw Error('Incomplete production audit');
+          for (const key of ['performance', 'accessibility', 'best-practices', 'seo']) {
+            const scores = runs.map(r => Math.round(r.categories[key].score * 100));
+            const median = [...scores].sort((a,b) => a-b)[1];
+            console.log(key, scores, 'median', median);
+            if (median < 90) process.exitCode = 1;
+          }
+          JS
