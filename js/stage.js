@@ -198,12 +198,8 @@
     /* ---------- старт ---------- */
 
     setState('hero');
-    updateCamera();
-    window.addEventListener('load', () => {
-        // шрифти/картинки могли змінити розміри
-        if (stage.dataset.state === 'hero') updateCamera();
-        else fitDesk();
-    });
-
-    if (location.hash === '#desk-view') showDeskInstantly();
+    if (location.hash === '#desk-view') {
+        updateCamera();
+        showDeskInstantly();
+    }
 })();

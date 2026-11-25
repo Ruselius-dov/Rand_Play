@@ -1345,3 +1345,9 @@ html:has(#advisor-form :focus) { scroll-behavior: auto; }
 
 /* Skip offscreen section layout until it approaches the viewport. */
 main > section { content-visibility:auto; contain-intrinsic-size:auto 700px; }
+/* Paint the first screen immediately. The CRT power transitions remain on scene changes. */
+.stage[data-state="hero"] .crt-screen.light-theme:not(.crt-off):not(.crt-reon) {
+    opacity: 1;
+    animation: none;
+}
+.stage[data-state="hero"] .desk-cinematic::before { background-image:none; filter:none; }
