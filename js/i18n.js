@@ -70,7 +70,7 @@
         ['Просто натисни Spin','Just press Spin'], ['Крутити рулетку зараз','Spin the roulette now'],
         ['Обрати улюблений жанр','Choose a favorite genre'],
         ['Миттєвий старт у Guest-mode • 100% безкоштовно • Жодних завантажень','Instant guest access • 100% free • No downloads'],
-        // Lab 10 game showcase: labels, text, and ARIA attributes
+        // game showcase: labels, text, and ARIA attributes
         ['RAND_PLAY / RETRO ARCADE','RAND_PLAY / РЕТРОАРКАДА'],
         ['Discover your next game','Відкрий свою наступну гру'],
         ['Explore retro-inspired games, preview their worlds, and let the roulette decide.','Переглядай ретроігри, знайомся з їхніми світами та довір вибір рулетці.'],

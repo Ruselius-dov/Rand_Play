@@ -21,7 +21,7 @@ The project combines an interactive landing page, a retro-inspired game showcase
 
 | Area | Technologies |
 | --- | --- |
-| Markup and styling | HTML5, CSS3, Tailwind CSS (CDN) |
+| Markup and styling | HTML5, CSS3, Tailwind CSS (precompiled) |
 | Application logic | Vanilla JavaScript |
 | Carousel | Swiper.js 11.0.0 |
 | Image lightbox | Fancybox 5.0.36 |
@@ -29,7 +29,7 @@ The project combines an interactive landing page, a retro-inspired game showcase
 | Embedded content | YouTube, Google Maps, Discord widget |
 | Hosting | GitHub Pages, Netlify, Vercel |
 
-Swiper and Fancybox are loaded from version-pinned jsDelivr URLs, so those features require a network connection unless their assets are hosted locally.
+Swiper and Fancybox are served locally when the gallery approaches the viewport.
 
 ## Live Demo
 
@@ -73,9 +73,9 @@ Rand_Play/
 
 2. Open the project folder in Visual Studio Code.
 3. Run `index.html` with a local development server, such as the **Live Server** extension, or open the file directly in a browser.
-4. Check that your internet connection is available for CDN-hosted libraries and embedded services.
+4. Check that your internet connection is available for external embedded services.
 
-No build step or package installation is required for the current static-site setup.
+After editing CSS or JavaScript, run `pnpm install --frozen-lockfile` and `pnpm run build` to regenerate the distribution files.
 
 ## Development Notes
 

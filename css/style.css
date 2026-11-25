@@ -986,7 +986,7 @@ input, textarea, select {
     background-color: #161616;
 }
 
-/* === LAB 10: Scoped game showcase === */
+/* === Scoped game showcase === */
 .rp-showcase { background:#0d0d0d; color:#fff; padding:64px 0 72px; }
 .rp-showcase-inner { max-width:1264px; width:100%; min-width:0; margin:0 auto; padding:0 24px; }
 .rp-showcase-heading { text-align:center; margin-bottom:42px; }
@@ -1141,7 +1141,7 @@ html { scroll-padding-top: calc(var(--header-h, 80px) + 12px); }
 
 
 /* ========================================
-   Lab 11 UI polish — consistent interactive states
+   UI polish — consistent interactive states
    ======================================== */
 :root { --rp-action-glow: 0 0 18px rgba(45, 212, 191, .32); }
 /* Same visual language as the contact form Submit button. */

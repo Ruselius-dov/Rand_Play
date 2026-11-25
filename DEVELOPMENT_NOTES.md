@@ -11,7 +11,7 @@ The showcase adds a responsive carousel and an image lightbox to the main page:
 - Navigation controls sit in a dedicated row beneath the cards, with pagination between the arrows, rather than overlaying card content.
 - Five local SVG illustrations provide self-contained, fictional retro-game previews. These are temporary showcase assets, not screenshots of released games.
 
-The libraries are loaded from version-pinned **jsDelivr** URLs. An internet connection is therefore needed to load Swiper and Fancybox unless the dependencies are hosted locally.
+Swiper and Fancybox are served locally when the gallery approaches the viewport.
 
 ## Localization
 

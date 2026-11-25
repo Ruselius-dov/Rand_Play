@@ -11,10 +11,10 @@
     <meta property="og:type" content="website">
 
     <!-- Self-hosted fonts retain font-display: swap and all language subsets. -->
-    <link rel="stylesheet" href="css/fonts.css">
+
 
     <!-- Precompiled Tailwind utilities; no browser runtime compiler. -->
-    <link rel="stylesheet" href="css/tailwind.css">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,11 +64,11 @@
     }
     </script>
 
-    <!-- Lab 10 media libraries: version-pinned -->
-    <link rel="stylesheet" href="assets/vendor/swiper.min.css">
-    <link rel="stylesheet" href="assets/vendor/fancybox.css">
+    <!-- media libraries: version-pinned -->
+
+
     <!-- Styles (кастомний CSS: сцена, CRT, стіл, рулетка) -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="canonical" href="https://randplay-kappa.vercel.app/">
     <meta property="og:url" content="https://randplay-kappa.vercel.app/">
@@ -335,7 +335,7 @@
 
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
                     <article class="bento-card group relative flex min-h-[374px] flex-col overflow-hidden rounded-lg border border-transparent bg-surface p-4 transition duration-300 hover:-translate-y-2 hover:border-neon hover:shadow-glow sm:last:col-span-2 lg:last:col-span-1">
-                        <img src="assets/images/shield.svg" alt="" aria-hidden="true"
+                        <img loading="lazy" src="assets/images/shield.svg" alt="" aria-hidden="true"
                              class="mx-auto block h-18 w-18 origin-top object-contain transition-transform duration-300 group-hover:scale-110 lg:mx-0 lg:origin-top-left">
                         <div class="flex flex-1 flex-col justify-center gap-6 px-3 text-center sm:px-6 lg:px-14 lg:text-left">
                             <h3 class="text-[1.375rem] font-bold leading-tight text-white">Provably Fair</h3>
@@ -344,7 +344,7 @@
                     </article>
 
                     <article class="bento-card group relative flex min-h-[374px] flex-col overflow-hidden rounded-lg border border-transparent bg-surface p-4 transition duration-300 hover:-translate-y-2 hover:border-neon hover:shadow-glow sm:last:col-span-2 lg:last:col-span-1">
-                        <img src="assets/images/secure.svg" alt="" aria-hidden="true"
+                        <img loading="lazy" src="assets/images/secure.svg" alt="" aria-hidden="true"
                              class="mx-auto block h-18 w-18 origin-top object-contain transition-transform duration-300 group-hover:scale-110 lg:mx-0 lg:origin-top-left">
                         <div class="flex flex-1 flex-col justify-center gap-6 px-3 text-center sm:px-6 lg:px-14 lg:text-left">
                             <h3 class="text-[1.375rem] font-bold leading-tight text-white">Cloud Autosave</h3>
@@ -353,7 +353,7 @@
                     </article>
 
                     <article class="bento-card group relative flex min-h-[374px] flex-col overflow-hidden rounded-lg border border-transparent bg-surface p-4 transition duration-300 hover:-translate-y-2 hover:border-neon hover:shadow-glow sm:last:col-span-2 lg:last:col-span-1">
-                        <img src="assets/images/speed.svg" alt="" aria-hidden="true"
+                        <img loading="lazy" src="assets/images/speed.svg" alt="" aria-hidden="true"
                              class="mx-auto block h-18 w-18 origin-top object-contain transition-transform duration-300 group-hover:scale-110 lg:mx-0 lg:origin-top-left">
                         <div class="flex flex-1 flex-col justify-center gap-6 px-3 text-center sm:px-6 lg:px-14 lg:text-left">
                             <h3 class="text-[1.375rem] font-bold leading-tight text-white">0-friction Instant Play</h3>
@@ -389,7 +389,7 @@
             </div>
         </section>
 
-        <!-- LAB 10: Swiper.js + Fancybox game previews -->
+        <!-- Swiper.js + Fancybox game previews -->
         <section id="game-showcase" aria-labelledby="showcase-title" class="rp-showcase relative z-10 scroll-mt-18">
             <div class="rp-showcase-inner">
                 <header class="rp-showcase-heading">
@@ -582,7 +582,7 @@
             </div>
         </section>
 
-        <!-- FEEDBACK FORM (ЛР №9): Tailwind, mobile-first; логіка в js/validation.js -->
+        <!-- FEEDBACK FORM: Tailwind, mobile-first; логіка в js/validation.js -->
         <section id="feedback" aria-labelledby="feedback-title" class="relative z-10 scroll-mt-18 py-16 md:py-20">
             <div class="mx-auto w-full max-w-content px-4 sm:px-8">
                 <h2 id="feedback-title" class="break-words text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl mb-10 md:mb-14">Зворотний <span class="text-neon">зв’язок</span></h2>
@@ -681,13 +681,13 @@
 
             <ul aria-label="Соціальні мережі" class="flex justify-center gap-5 md:col-span-2 lg:col-span-1 lg:justify-end">
             <!-- TODO: заміни на URL власного профілю -->
-            <li><a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img src="assets/images/IconX.svg" alt="" class="h-6 w-6"></a></li>
+            <li><a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img loading="lazy" src="assets/images/IconX.svg" alt="" class="h-6 w-6"></a></li>
             <!-- TODO: заміни на URL власного профілю -->
-            <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img src="assets/images/IconInstagram.svg" alt="" class="h-6 w-6"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img loading="lazy" src="assets/images/IconInstagram.svg" alt="" class="h-6 w-6"></a></li>
             <!-- TODO: заміни на URL власного профілю -->
-            <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img src="assets/images/IconYoutube.svg" alt="" class="h-6 w-6"></a></li>
+            <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img loading="lazy" src="assets/images/IconYoutube.svg" alt="" class="h-6 w-6"></a></li>
             <!-- TODO: заміни на URL власного профілю -->
-            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img src="assets/images/IconLinkedin.svg" alt="" class="h-6 w-6"></a></li>
+            <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (відкриється в новій вкладці)" class="inline-flex h-11 w-11 items-center justify-center leading-none transition hover:-translate-y-0.5 hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)]"><img loading="lazy" src="assets/images/IconLinkedin.svg" alt="" class="h-6 w-6"></a></li>
             </ul>
         </div>
 
@@ -705,18 +705,6 @@
         </div>
     </div>
 
-    <!-- Lab 10: load dependencies before custom showcase code -->
-    <script src="js/showcase.js" defer></script>
-    <!-- Рулетка на моніторі -->
-    <script src="js/roulette.js" defer></script>
-    <!-- Камера: hero <-> стіл -->
-    <script src="js/stage.js" defer></script>
-    <!-- Мобільне меню (гамбургер) -->
-    <script src="js/menu.js" defer></script>
-    <script src="js/ui-polish.js" defer></script>
-    <script src="js/game-advisor.js" defer></script>
-    <script src="js/i18n.js" defer></script>
-    <script src="js/validation.js" defer></script>
-    <script src="js/auth.js" defer></script>
+    <script src="js/main.min.js" defer></script>
 </body>
 </html>
